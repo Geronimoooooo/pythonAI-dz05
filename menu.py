@@ -132,3 +132,9 @@ def my_bank_account():
         else:
             print('Неверный пункт меню')
     return
+
+def simple_separator():
+    separator = print('**********')
+    return separator
+    pass
+
