@@ -17,6 +17,7 @@ def show_menu():
     print('10. мой банковский счет')
     print('11. смена рабочей директории')
     print('12. вернуться в прошлую директорию')
+    print('13. сохранить содержимое рабочей директории в файл')
     print('0. выход')
     return
 
@@ -132,3 +133,23 @@ def my_bank_account():
         else:
             print('Неверный пункт меню')
     return
+
+def simple_separator():
+    separator = print('**********')
+    return separator
+    pass
+
+
+def save_directory_in_file(filename='listdir.txt'):
+    files = []
+    dirs = []
+
+    for item in os.listdir():
+        if os.path.isfile(item):
+            files.append(item)
+        elif os.path.isdir(item):
+            dirs.append(item)
+
+    with open(filename, 'w') as f:
+        f.write("files: " + ", ".join(files) + "\n")
+        f.write("dirs: " + ", ".join(dirs) + "\n")
