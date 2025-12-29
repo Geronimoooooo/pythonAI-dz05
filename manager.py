@@ -65,6 +65,9 @@ while True:
     elif choice == '12':
         os.chdir(old_dir)
         pass
+    elif choice == '13':
+        menu.save_directory_in_file()
+        pass
     elif choice == '0':
         break
     else:
