@@ -6,12 +6,13 @@ import menu
 
 while True:
     menu.show_menu()
+    menu.simple_separator()
 
     i = 0
     items = os.listdir()
     current_dir = os.getcwd()
 
-    choice = input('Выберите пункт меню')
+    choice = input('Выберите пункт меню: ')
     if choice == '1':
         if not os.path.exist(f'new{i}'):
             os.mkdir(f'new{i}')
