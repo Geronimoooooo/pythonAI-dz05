@@ -67,10 +67,10 @@ while True:
     simple_separator()
     choice = input('Выберите пункт меню: ')
     if choice == '1':
-        balance = top_up()
+        top_up()
         pass
     elif choice == '2':
-        balance = buy_smth()
+        buy_smth()
         pass
     elif choice == '3':
         account_history()

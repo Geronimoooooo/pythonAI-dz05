@@ -6,7 +6,6 @@ import menu
 
 while True:
     menu.show_menu()
-    menu.simple_separator()
 
     i = 0
     items = os.listdir()
@@ -24,10 +23,10 @@ while True:
     elif choice == '3':
         file_to_copy = input('Введите название папки или файла: ')
         copied_file = input('Введите куда копировать: ')
-        if not os.path.exist(file_to_copy):
-            print('Такого файла или папки нет')
-        else:
-            shutil.copy(file_to_copy, copied_file)
+        """
+        Место 1, где возможно было применить тернарный оператор
+        """
+        print('Такого файла или папки нет') if not os.path.exists(file_to_copy) else shutil.copy(file_to_copy, copied_file)
         pass
     elif choice == '4':
         print(os.listdir())
@@ -58,10 +57,10 @@ while True:
     elif choice == '11':
         old_dir = current_dir
         new_dir = input('Введите новую директорию: ')
-        if os.path.isdir(new_dir):
-            os.chdir(new_dir)
-        else:
-            print('Такой директории не существует')
+        """
+        Место 2, где возможно было применить тернарный оператор
+        """
+        os.chdir(new_dir) if os.path.isdir(new_dir) else print('Такой директории не существует')
         pass
     elif choice == '12':
         os.chdir(old_dir)
@@ -72,4 +71,6 @@ while True:
     elif choice == '0':
         break
     else:
+        menu.simple_separator('!!!!!!!!')
         print('Неверный пункт меню')
+        menu.simple_separator('!!!!!!!!')

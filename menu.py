@@ -96,10 +96,19 @@ def my_bank_account():
     def show_balance():
         with open("balance.txt", 'r') as balance:
             balance_to_show = int(balance.read())
+            """
+            Место 3, где возможно было применить тернарный оператор
+            """
             return balance_to_show if balance_to_show else 0
 
     def top_up():
-        count = int(input('Введите сумму пополнения: '))
+        # Исключение №2
+        while True:
+            try:
+                count = int(input('Введите сумму пополнения: '))
+                break
+            except ValueError:
+                print('Введите целое число для пополнения счета.')
         with open("balance.txt", 'r') as balance:
             balance_top_up = int(balance.read())
             balance_top_up += count
@@ -110,7 +119,13 @@ def my_bank_account():
         return show_balance()
 
     def buy_smth():
-        buy_amount = int(input('Введите сумму покупки: '))
+        #Исключение №1
+        while True:
+            try:
+                buy_amount = int(input('Введите сумму покупки: '))
+                break
+            except (ValueError, UnboundLocalError):
+                print('Введите целое число для совершения покупки.')
         with open("balance.txt", 'r') as balance:
             balance_to_check = int(balance.read())
             if buy_amount > balance_to_check:
@@ -142,10 +157,10 @@ def my_bank_account():
         simple_separator()
         choice = input('Выберите пункт меню: ')
         if choice == '1':
-            balance = top_up()
+            top_up()
             pass
         elif choice == '2':
-            balance = buy_smth()
+            buy_smth()
             pass
         elif choice == '3':
             account_history()
@@ -157,21 +172,29 @@ def my_bank_account():
             print('Неверный пункт меню')
     return
 
-def simple_separator():
-    separator = print('**********')
+def simple_separator(symbol='**********'):
+    separator = print(symbol)
     return separator
     pass
 
 
 def save_directory_in_file(filename='listdir.txt'):
-    files = []
-    dirs = []
+    """
+    Место 1, где возможно использовать генератор списков
+    :param filename:
+    :return: файл со списком файлов
+    """
+    content_dir = os.listdir()
+    files = [item for item in content_dir if os.path.isfile(item)]
+    dirs = [item for item in content_dir if os.path.isdir(item)]
 
+    """
     for item in os.listdir():
         if os.path.isfile(item):
             files.append(item)
         elif os.path.isdir(item):
             dirs.append(item)
+    """
 
     with open(filename, 'w') as f:
         f.write("files: " + ", ".join(files) + "\n")
